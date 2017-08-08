@@ -17,7 +17,7 @@ protocols:
 
 - boot:
     timeout:
-      minutes: 10
+      minutes: {{ (10 * {{timeout_factor}}) // 1 }}
     method: {{ boot_method|default("u-boot") }}
     type: {{ boot_type|default("booti") }}
     commands: {{ boot_commands|default("ramdisk") }}
