@@ -1,4 +1,5 @@
 {% block metadata %}
+{% set timeout_factor = lab_timeout_factor | default("1") %}
 metadata:
   image.type: 'AGL'
 {% endblock %}
@@ -8,9 +9,9 @@ device_type: {{ device_type }}
 job_name: {{ name }}
 timeouts:
   job:
-    minutes: 30
+    minutes: {{ (30 * {{timeout_factor}}) // 1 }}
   action:
-    minutes: 15
+    minutes: {{ (15 * {{timeout_factor}}) // 1 }}
 priority: {{ priority }}
 visibility: public
 {% endblock %}
